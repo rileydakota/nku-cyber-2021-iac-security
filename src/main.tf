@@ -1,7 +1,3 @@
-locals {
-  region = "us-east-2"
-}
-
 terraform {
   required_providers {
     aws = {
@@ -9,21 +5,18 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "s3" {
-    bucket = "terraform-state-bucket-39129419387"
-    key    = "terraform.tfstate"
-    region = local.region
-  }
+  backend "s3" {}
 }
 
-
-
+locals {
+  region = "us-east-2"
+}
 
 provider "aws" {
   region = local.region
 }
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "my_test_vpc" {
   cidr_block = "10.0.0.0/16"
   tags       = {}
 }
