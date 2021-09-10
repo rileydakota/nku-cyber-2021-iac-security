@@ -1,3 +1,7 @@
+locals {
+  region = "us-east-2"
+}
+
 terraform {
   required_providers {
     aws = {
@@ -8,16 +12,15 @@ terraform {
   backend "s3" {
     bucket = "terraform-state-bucket-39129419387"
     key    = "terraform.tfstate"
-    region = "us-east-2"
+    region = local.region
   }
 }
 
 
 
 
-
 provider "aws" {
-  region = "us-east-2"
+  region = local.region
 }
 
 resource "aws_vpc" "main" {
