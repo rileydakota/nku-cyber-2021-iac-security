@@ -21,4 +21,3 @@ jobs:
         with:
           path: src
           auto_approve: true
-          backend_config_file: src/tf.backend
