@@ -5,7 +5,7 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "s3_from_file" {}
+  backend "s3" {}
 }
 
 locals {
