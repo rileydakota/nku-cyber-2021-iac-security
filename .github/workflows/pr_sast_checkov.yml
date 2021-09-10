@@ -1,0 +1,18 @@
+name: Checkov SAST PR
+
+on: [pull_request]
+
+jobs:
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: src/
+          skip_check: CKV2_AWS_12,CKV2_AWS_11
