@@ -1,7 +1,3 @@
-locals {
-  region = "us-east-2"
-}
-
 terraform {
   required_providers {
     aws = {
@@ -9,11 +5,11 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "s3" {
-    bucket = "terraform-state-bucket-39129419387"
-    key    = "terraform.tfstate"
-    region = local.region
-  }
+  backend "s3_from_file" {}
+}
+
+locals {
+  region = "us-east-2"
 }
 
 provider "aws" {
