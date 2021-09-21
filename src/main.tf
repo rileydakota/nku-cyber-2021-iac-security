@@ -26,5 +26,5 @@ resource "aws_vpc" "my_test_vpc" {
 }
 
 data "aws_secretsmanager_secret" "testing-secrets-in-state" {
-  arn = "arn:aws:secretsmanager:us-east-1:391294193874:secret:terraform-testing-q2Lwwo"
+  arn = "arn:aws:secretsmanager:us-east-2:391294193874:secret:terraform-testing-q2Lwwo"
 }
