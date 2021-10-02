@@ -14,6 +14,7 @@ locals {
       project = "nku-iac-security"
       owner = "Dakota"
   }
+  aws_ak = "AKIAXYZDQCEN6OHMNKU3"
 }
 
 provider "aws" {
