@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - run: sleep 5 # there's still a race condition for now
       - name: Configure AWS Credentials
         run: |
           export AWS_ROLE_ARN=arn:aws:iam::391294193874:role/GithubActionsRole
