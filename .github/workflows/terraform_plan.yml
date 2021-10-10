@@ -20,7 +20,7 @@ jobs:
           aws-region: us-east-2
       - name: terraform plan
         env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: dflook/terraform-plan@v1
         with:
           path: src
