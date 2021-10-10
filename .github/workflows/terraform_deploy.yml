@@ -11,7 +11,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
-      pull-request: write
+      pull-requests: write
     name: Apply terraform
     steps:
       - name: Checkout
