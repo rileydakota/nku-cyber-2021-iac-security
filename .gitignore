@@ -27,3 +27,18 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# vscode
+.devcontainer/*
+
+# node, ts, and CDK
+examples/cdk/node_modules
+
+
+examples/cdk/*.js
+examples/cdk/!jest.config.js
+examples/cdk/*.d.ts
+
+# CDK asset staging directory
+examples/cdk/.cdk.staging
+examples/cdk/cdk.out
