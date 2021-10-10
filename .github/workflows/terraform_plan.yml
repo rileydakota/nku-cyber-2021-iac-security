@@ -14,6 +14,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::391294193874:role/GitHubActions-Deploy-Role
           aws-region: us-east-2
+          role-session-name: GitHubActionsDeployment-nku-cyber-21
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
