@@ -8,7 +8,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
-       pull-requests: write
+      pull-requests: write
     name: Create terraform plan          
     steps:
       - name: Checkout
