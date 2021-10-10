@@ -5,6 +5,9 @@ on: [pull_request]
 jobs:
   plan:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     name: Create terraform plan          
     steps:
       - name: Checkout
