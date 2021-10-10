@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: wrtie
+      contents: write
       pull-request: write
     name: Apply terraform
     steps:
