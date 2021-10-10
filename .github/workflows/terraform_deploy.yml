@@ -10,18 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: wrtie
+      pull-request: write
     name: Apply terraform
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@b8c74de753fbcb4868bf2011fb2e15826ce973af
         with:
           role-to-assume: arn:aws:iam::391294193874:role/GithubActionsRole
           aws-region: us-east-2
       - name: terraform apply
-        uses: dflook/terraform-apply@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path: src
           auto_approve: true
