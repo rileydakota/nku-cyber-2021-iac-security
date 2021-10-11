@@ -68,6 +68,8 @@ resource "aws_instance" "web" {
   monitoring             = true
   metadata_options {
     http_tokens = "required"
+    http_put_response_hop_limit = 1
+    http_endpoint = "enabled"
   }
 }
 
