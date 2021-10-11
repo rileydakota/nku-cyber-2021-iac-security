@@ -65,6 +65,10 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.block_all_inbound.id]
   iam_instance_profile   = aws_iam_instance_profile.ssm_managed_instance_prof.name
   tags                   = local.common_tags
+  monitoring             = true
+  metadata_options {
+    http_tokens = "required"
+  }
 }
 
 resource "aws_route_table" "public_route_table" {
