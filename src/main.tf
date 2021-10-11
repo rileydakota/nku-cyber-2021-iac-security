@@ -63,7 +63,7 @@ resource "aws_instance" "web" {
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.demo_subnet_public.id
   vpc_security_group_ids = [aws_security_group.block_all_inbound.id]
-  iam_instance_profile   = aws_iam_instance_profile.ssm_managed_instance_prof
+  iam_instance_profile   = aws_iam_instance_profile.ssm_managed_instance_prof.name
   tags                   = local.common_tags
 }
 
