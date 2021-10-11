@@ -35,7 +35,7 @@ resource "aws_security_group" "block_all_inbound" {
   name        = "block_all_inbound"
   description = "Blocks all inbound traffic while allowing outbound"
   vpc_id      = aws_vpc.demo_vpc.id
-  
+
   egress = [{
     description      = "allow all outbound"
     from_port        = 0
@@ -43,9 +43,9 @@ resource "aws_security_group" "block_all_inbound" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
-    prefix_list_ids = []
-    security_groups = []
-    self = false
+    prefix_list_ids  = []
+    security_groups  = []
+    self             = false
   }]
 
 
@@ -72,18 +72,19 @@ resource "aws_route_table" "public_route_table" {
 
   route = [
     {
-      cidr_block = "0.0.0.0/0"
-      gateway_id = aws_internet_gateway.igw.id
-      carrier_gateway_id = ""
+      cidr_block                 = "0.0.0.0/0"
+      gateway_id                 = aws_internet_gateway.igw.id
+      carrier_gateway_id         = ""
       destination_prefix_list_id = ""
-      egress_only_gateway_id = ""
-      instance_id = ""
-      local_gateway_id = ""
-      nat_gateway_id =  ""
-      network_interface_id = ""
-      transit_gateway_id = ""
-      vpc_endpoint_id = ""
-      vpc_peering_connection_id = ""
+      egress_only_gateway_id     = ""
+      instance_id                = ""
+      local_gateway_id           = ""
+      nat_gateway_id             = ""
+      network_interface_id       = ""
+      transit_gateway_id         = ""
+      vpc_endpoint_id            = ""
+      vpc_peering_connection_id  = ""
+      ipv6_cidr_block            = ""
     }
   ]
 
