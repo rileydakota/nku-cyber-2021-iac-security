@@ -43,6 +43,9 @@ resource "aws_security_group" "block_all_inbound" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+    prefix_list_ids = []
+    security_groups = []
+    self = false
   }]
 
 
@@ -70,7 +73,7 @@ resource "aws_route_table" "public_route_table" {
   route = [
     {
       cidr_block = "0.0.0.0/0"
-      gateway_id = aws_internet_gateway.igw.id
+      gateway_id = aws_internet_gateway.igw.id 
     }
   ]
 
