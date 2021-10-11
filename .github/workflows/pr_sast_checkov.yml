@@ -15,4 +15,4 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: src/
-          skip_check: CKV_AWS_8,CKV_AWS_135
+          skip_check: CKV_AWS_8,CKV_AWS_135,CKV2_AWS_11,CKV2_AWS_12
