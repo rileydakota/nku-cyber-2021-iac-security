@@ -58,18 +58,20 @@ resource "aws_subnet" "demo_subnet_public" {
 }
 
 
-resource "aws_instance" "web" {
-  ami                    = data.aws_ami.amazon-linux-2.id
-  instance_type          = "t3.micro"
-  subnet_id              = aws_subnet.demo_subnet_public.id
-  vpc_security_group_ids = [aws_security_group.block_all_inbound.id]
-  iam_instance_profile   = aws_iam_instance_profile.ssm_managed_instance_prof.name
-  tags                   = local.common_tags
-  monitoring             = true
+resource "aws_instance" "bastion" {
+  ami                         = data.aws_ami.amazon-linux-2.id
+  instance_type               = "t3.micro"
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.demo_subnet_public.id
+  vpc_security_group_ids      = [aws_security_group.block_all_inbound.id]
+  iam_instance_profile        = aws_iam_instance_profile.ssm_managed_instance_prof.name
+  tags                        = local.common_tags
+  monitoring                  = true
+
   metadata_options {
-    http_tokens = "required"
+    http_tokens                 = "required"
     http_put_response_hop_limit = 1
-    http_endpoint = "enabled"
+    http_endpoint               = "enabled"
   }
 }
 
