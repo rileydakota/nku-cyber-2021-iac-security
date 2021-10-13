@@ -13,6 +13,7 @@ locals {
   common_tags = {
     project = "nku-iac-security"
     owner   = "Dakota"
+    best_conference = "nku_cyber_symposium"
   }
 }
 
