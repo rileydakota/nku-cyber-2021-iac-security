@@ -76,7 +76,8 @@ To not literally rewrite the contents of my slide here, links to all of the "Mod
   - Test them!
   - Use them yourself!
   - Be wary of "Bad Abstractions", accidentally closing over useful configuration, and realize litte to no abstraction is often better then a bad one
-  - If you are using either the AWS CDK or Pulumi, take advantage of things like **[docstrings](https://www.programiz.com/python-programming/docstrings)** that allow documentation to literally live with your module and be available from intellisense within your IDE (See the picture below for a practical example of this with the CDK)
+  - If you are using either the AWS CDK or Pulumi, take advantage of things like **[docstrings](https://www.programiz.com/python-programming/docstrings)** that allow documentation to literally live with your module and be available from intellisense within your IDE (See the picture below for a practical example of this with the CDK, which displays the Docstring from the CDK EC2 Security Group construct). Also - embracing the static typing if available for your language of choice prevents so many pre-deployment errors!
+  - Lastly, avoid the pattern of writing small wrappers around single resources or contructs. It can be tempting to write a "Secure S3" module, for example, but this often ends up in the camp of "bad abstractions" mentioned above, gets in the way of legitimate usages, and IaC SAST is a much better control for catching the things most people aim to prevent with this sort of thing. Even Terraform outright recommends against this pattern in their [When To Write A Module](https://www.terraform.io/docs/language/modules/develop/index.html#when-to-write-a-module) section of the module documentation
 
 ![Docstrings example in AWS CDK](docs/cdk-docstrings.png)
 
