@@ -78,7 +78,7 @@ To not literally rewrite the contents of my slide here, links to all of the "Mod
   - Be wary of "Bad Abstractions", accidentally closing over useful configuration, and realize litte to no abstraction is often better then a bad one
   - If you are using either the AWS CDK or Pulumi, take advantage of things like **[docstrings](https://www.programiz.com/python-programming/docstrings)** that allow documentation to literally live with your module and be available from intellisense within your IDE (See the picture below for a practical example of this with the CDK)
 
-[Docstrings example in AWS CDK](docs/cdk-docstrings.png)
+![Docstrings example in AWS CDK](docs/cdk-docstrings.png)
 
 ### Change Control And Management
 
