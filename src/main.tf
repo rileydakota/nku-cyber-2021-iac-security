@@ -61,6 +61,7 @@ resource "aws_subnet" "demo_subnet_public" {
 resource "aws_instance" "bastion" {
   ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "t3.micro"
+   #checkov:skip=CKV_AWS_88:This instance communicates with the public ssm endpoint
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.demo_subnet_public.id
   vpc_security_group_ids      = [aws_security_group.block_all_inbound.id]
