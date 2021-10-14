@@ -130,7 +130,7 @@ resource "aws_iam_role" "ssm_managed_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ec2.amazonaws.com"
+          AWS = "*"
         }
       },
     ]
