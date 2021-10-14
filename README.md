@@ -20,11 +20,11 @@ Specicially in the Demo - we are using the AWS Terraform Provider to deploy Infr
 
 To the point of other IaC tools - I recommend taking a look at the following:
 
-[Cloud Development Kit](https://aws.amazon.com/cdk/)
-[Pulumi](https://www.pulumi.com)
-[AWS CloudFormation](https://aws.amazon.com/cloudformation/)
-[Ansible](https://github.com/ansible/ansible)
-[Kubernetes Manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/) (see also - [Helm Charts](https://artifacthub.io))
+- [Cloud Development Kit](https://aws.amazon.com/cdk/) 
+- [Pulumi](https://www.pulumi.com)
+- [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
+- [Ansible](https://github.com/ansible/ansible)
+- [Kubernetes Manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/) (see also - [Helm Charts](https://artifacthub.io))
 
 ### GitOps
 
