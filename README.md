@@ -10,6 +10,7 @@ It should be noted that this is a "reference architecture" designed to demonstra
 Slides Here
 
 Demo Architecture:
+
 ![Demo Architecture](docs/labarch_diagram.jpg)
 
 ### IaC Tooling
