@@ -7,7 +7,7 @@ This readme contains the code used for the demo in my talks, as well as anything
 
 It should be noted that this is a "reference architecture" designed to demonstrate some key points relevant to my talk, and only meant for non-production usage in its current state. I will try to cover some of the "missing" asspects (that were mainly kept out for simplicity) below.
 
-[Click here for the slides!](ppt/ppt-iac-security.pptx)
+[Click here for the slides!](ppt/iac_security_ppt.pdf)
 
 Demo Architecture:
 
