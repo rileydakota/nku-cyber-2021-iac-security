@@ -121,7 +121,7 @@ resource "aws_iam_instance_profile" "ssm_managed_instance_prof" {
 
 resource "aws_iam_role" "ssm_managed_role" {
   path                = "/"
-  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
+  managed_policy_arns = ["bad_policy.arn"]
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -146,7 +146,21 @@ data "aws_ami" "amazon-linux-2" {
   }
 }
 
-
+resource "aws_iam_policy" "bad_policy" {
+  name = "bad_policy"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "*"
+        ]
+        Effect = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
+}
 
 data "aws_secretsmanager_secret" "testing-secrets-in-state" {
   arn = "arn:aws:secretsmanager:us-east-2:391294193874:secret:terraform-testing-q2Lwwo"
