@@ -14,6 +14,26 @@ locals {
     project = "nku-iac-security"
     owner   = "Dakota"
   }
+  priv_key = <<EOT
+  -----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgF8k2zHGpQYsqJpXBPcAU9hY3gtyOk9VPfJ+5FUVTaoWlmn76Vio
+DrAzdU6FsFvlDL1W3V8aZVn67WUMdqQ8fdvx//4w0Ka6JlVQw5qxarrxLb5t8M6u
+vEYi0zLwGlBCZrT3qiFBBatx+KAoeaBa6V+0HzCHXgByK+bDKQH+WnDZAgMBAAEC
+gYAOOiys3M+AhN0Rd0G+zcW77E4H2CTwCAcjY+Yw8uaSMJ59arYSE89eedNo0oT0
+uOOWzI590iylr+gf3CVBmeoX8v9KGxbbA41uQluYyQHYpl9UKfJSrmlWCW6YtHpC
+3niK3P0zTEqaZCpS2gXr/ht0Wa4m22vd7KZAC3W1JRgSoQJBAKAiftLK37wgUwWn
+l9OeEFR+03M4AlPH4j1w49JBWw0V2kyZgRW/gRnWWS4vH6pr6vWiYg+wY5A43e//
+9HgS3KcCQQCYGi1imFJRmovOt9PvSPdNRYaix+7RV1SRdlC1R7vtwXWWKlKZQI6v
+yDuUSe12aH5ul4q3jgWRYhbIJKYBpnZ/AkEAhT9O8o33j+4Bx1HGR0NeaUDDKDux
+zA8mFWQLXlgdsIy/gj+1JuicP2iZ+pEhs0hrUYuWN2HZ5xc6rcr4nLVtPwJBAJMS
+rNPrSZ3SfGFUaz+zJD25fqgj/w65DPLinsPLKzKIoDSlk9zQCah7SvDmUxDtlWNG
+cUFvuH6NhE3e8g4ice0CQBDo66odxbEr967zUuhOi4mbtuRU2D5aTjan4mq0hyuX
+1g+ESdf/FlKJqcpA5yiFES48i5HzWhJNm2Ljss370/w=
+-----END RSA PRIVATE KEY-----
+  EOT
+  aws_ak = "AKIAXYZDQCENUWO5EXVW"
+  aws_sk = "0xqkmLoQ0cPAnZgzZElL1KUFQeaOkohEfuQ1xJlw"
+  npm_ci = "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"
 }
 
 provider "aws" {
@@ -68,6 +88,7 @@ resource "aws_instance" "bastion" {
   iam_instance_profile        = aws_iam_instance_profile.ssm_managed_instance_prof.name
   tags                        = local.common_tags
   monitoring                  = true
+  user_data = "#!/bin/bash\n export AWS_ACCESS_KEY_ID=${local.aws_ak}\n export AWS_SECRET_ACCESS_KEY=${local.aws_sk}\n echo ${local.priv_key} > key.txt"
 
   metadata_options {
     http_tokens                 = "required"
