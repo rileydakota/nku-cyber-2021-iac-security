@@ -113,10 +113,10 @@ On the topic of Change Control - specifically in an Infrastructure-As-Code/CICD 
 In our Demo Architecture - we are using [Checkov](https://github.com/bridgecrewio/checkov) via a [GitHub action](https://github.com/bridgecrewio/checkov-action) to check our Terraform templates for security issues/misconfigurations before deployment. Checkov is an Open Source Static Code Analyis tool designed specifically for Infrastructure-As-Code. It comes packed with a large amount of rules, support for several variants of IaC (Terraform, Cloudformation, K8s, Dockerfiles, Serverless Framework, and ARM templates). In addition, it also supports custom checks via Python or a specialied graph language for finding correlations between resources.
 
 IaC SAST is great at catching common issues such as:
-    - World accessible security groups
-    - Logging not enabled
-    - Minor IAM Misconfigurations
-    - Disabled Encryption At Rest
+- World accessible security groups
+- Logging not enabled
+- Minor IAM Misconfigurations
+- Disabled Encryption At Rest
 
 IaC SAST tools are becoming much more common (also commercial variants), some great other open source options are:
     
