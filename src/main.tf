@@ -66,7 +66,7 @@ module "session_manager" {
   source        = "git::https://github.com/tmknom/terraform-aws-session-manager.git?ref=tags/2.0.0"
   name          = "example"
   instance_type = "t2.micro"
-  subnet_id     = aws_subnet.demo_subnet_public.subnet_id
+  subnet_id     = aws_subnet.demo_subnet_public.id
   vpc_id        = aws_vpc.demo_vpc.id
 }
 
