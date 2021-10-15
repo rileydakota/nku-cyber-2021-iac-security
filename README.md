@@ -77,7 +77,7 @@ As referenced in the talk - Modules/Providers/Extensions (Official terminology v
 
 Alex Kaskaso wrote an awesome walkthrough of this abusing Terraform via malicious modules - check it out [here](https://alex.kaskaso.li/post/terraform-plan-rce)
 
-This section spoke more to malicious code, and not a template containing a malicous configuration (eg - someone deploying Terraform that creates an external assumable role in AWS for malicious purposes)- that would be covered in part by Static Code Analysis, which is talked about below (and later in the slides).
+This section spoke more to malicious code, and not a template containing a malicious configuration (eg - someone deploying Terraform that creates an external assumable role in AWS for malicious purposes)- that would be covered in part by Static Code Analysis, which is talked about below (and later in the slides).
 
 ## Codifying Best Practices - Providing Modules To Your Dev Teams
 
@@ -110,7 +110,7 @@ On the topic of Change Control - specifically in an Infrastructure-As-Code/CICD 
 
 ## Finding Misconfigurations Before Deployment
 
-In our Demo Architecture - we are using [Checkov](https://github.com/bridgecrewio/checkov) via a [GitHub action](https://github.com/bridgecrewio/checkov-action) to check our Terraform templates for security issues/misconfigurations before deployment. Checkov is an Open Source Static Code Analyis tool designed specifically for Infrastructure-As-Code. It comes packed with a large amount of rules, support for several variants of IaC (Terraform, Cloudformation, K8s, Dockerfiles, Serverless Framework, and ARM templates). In addition, it also supports custom checks via Python or a specialied graph language for finding correlations between resources.
+In our Demo Architecture - we are using [Checkov](https://github.com/bridgecrewio/checkov) via a [GitHub action](https://github.com/bridgecrewio/checkov-action) to check our Terraform templates for security issues/misconfigurations before deployment. Checkov is an Open Source Static Code Analyis tool designed specifically for Infrastructure-As-Code. It comes packed with a large amount of rules, support for several variants of IaC (Terraform, Cloudformation, K8s, Dockerfiles, Serverless Framework, and ARM templates). In addition, it also supports custom checks via Python or a specialized graph language for finding correlations between resources.
 
 IaC SAST is great at catching common issues such as:
 - World accessible security groups
