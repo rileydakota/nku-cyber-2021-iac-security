@@ -119,15 +119,16 @@ IaC SAST is great at catching common issues such as:
     - Disabled Encryption At Rest
 
 IaC SAST tools are becoming much more common (also commercial variants), some great other open source options are:
-    - [AWS Cloudformation Guard](https://github.com/aws-cloudformation/cloudformation-guard): Originally developed only for AWS CloudFormation, Cloudformation Guard 2.0 now supports running checks (which are written in a flexible Domain Specific Language) against pretty much any JSON or YAML formatted template. In addition - if speed of scans is a concern, Cloudformation Guard is blazing fast due to being implemented in Rust!
-    - [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/terraform/) Another popular Policy-As-Code tool, Open Policy Agent (OPA) - is owned and sponsored by the [Cloud Native Computing Foundation](https://www.cncf.io). OPA is yet another tool that utilizes a Domain Specific Language called Rego, to write rules that can then be applied to pretty much any structured JSON data. The biggest appeal for OPA is it can be used not only for IaC SAST/Policy-As-Code, but can even be used in your applications, APIs, and more to do authorization. A single paragraph wont do it justice - check out the docs [here](https://www.openpolicyagent.org/docs/latest/)
-    - [CDK-Nag](https://github.com/cdklabs/cdk-nag) Native tooling for running security checks on IaC tools that utilize real turing complete languages hasn't really caught on yet. A common workaround for say the CDK is the fact that behind the scenes, the AWS CDK actually builds a CloudFormation template dynamically and then deploys that, most people synthesize a template and then feed that template to a SAST tool that supports cloudformation. The issue with that pattern is that Dev Teams who get comfortable with the CDK often have to do the extra leg work to figure out how to modfiy the finding in question in their CDK Template. To that end, AWS released CDK-Nag, which from what I have found is the only security checking tool that exists for the CDK to date. While it is not technically Static Code Analysis (it requires integrated into the template as of today), it serves the same end by alerting Devs of configuration violations, and in some cases, being able to remediate them automatically!
     
+- [AWS Cloudformation Guard](https://github.com/aws-cloudformation/cloudformation-guard): Originally developed only for AWS CloudFormation, Cloudformation Guard 2.0 now supports running checks (which are written in a flexible Domain Specific Language) against pretty much any JSON or YAML formatted template. In addition - if speed of scans is a concern, Cloudformation Guard is blazing fast due to being implemented in Rust!
+- [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/terraform/) Another popular Policy-As-Code tool, Open Policy Agent (OPA) - is owned and sponsored by the [Cloud Native Computing Foundation](https://www.cncf.io). OPA is yet another tool that utilizes a Domain Specific Language called Rego, to write rules that can then be applied to pretty much any structured JSON data. The biggest appeal for OPA is it can be used not only for IaC SAST/Policy-As-Code, but can even be used in your applications, APIs, and more to do authorization. A single paragraph wont do it justice - check out the docs [here](https://www.openpolicyagent.org/docs/latest/)
+- [CDK-Nag](https://github.com/cdklabs/cdk-nag) Native tooling for running security checks on IaC tools that utilize real turing complete languages hasn't really caught on yet. A common workaround for say the CDK is the fact that behind the scenes, the AWS CDK actually builds a CloudFormation template dynamically and then deploys that, most people synthesize a template and then feed that template to a SAST tool that supports cloudformation. The issue with that pattern is that Dev Teams who get comfortable with the CDK often have to do the extra leg work to figure out how to modfiy the finding in question in their CDK Template. To that end, AWS released CDK-Nag, which from what I have found is the only security checking tool that exists for the CDK to date. While it is not technically Static Code Analysis (it requires integrated into the template as of today), it serves the same end by alerting Devs of configuration violations, and in some cases, being able to remediate them automatically!
+
 
 Other Honorable mentions that I wont ramble about:
-    - cfn-nag
-    - tfscan
-    - terrascan
-    - HashiCorp Seninel
+- cfn-nag
+- tfscan
+- terrascan
+- HashiCorp Sentinel
 
 ## Credentials In Code
