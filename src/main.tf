@@ -35,6 +35,17 @@ resource "aws_security_group" "block_all_inbound" {
   name        = "block_all_inbound"
   description = "Blocks all inbound traffic while allowing outbound"
   vpc_id      = aws_vpc.demo_vpc.id
+  ingress = [{
+    description      = "very insecure rule"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    prefix_list_ids  = []
+    security_groups  = []
+    self             = false
+  }]
 
   egress = [{
     description      = "allow all outbound"
@@ -110,7 +121,7 @@ resource "aws_iam_instance_profile" "ssm_managed_instance_prof" {
 
 resource "aws_iam_role" "ssm_managed_role" {
   path                = "/"
-  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
+  managed_policy_arns = ["bad_policy.arn"]
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -119,7 +130,7 @@ resource "aws_iam_role" "ssm_managed_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ec2.amazonaws.com"
+          AWS = "*"
         }
       },
     ]
@@ -135,7 +146,21 @@ data "aws_ami" "amazon-linux-2" {
   }
 }
 
-
+resource "aws_iam_policy" "bad_policy" {
+  name = "bad_policy"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "*"
+        ]
+        Effect = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
+}
 
 data "aws_secretsmanager_secret" "testing-secrets-in-state" {
   arn = "arn:aws:secretsmanager:us-east-2:391294193874:secret:terraform-testing-q2Lwwo"
