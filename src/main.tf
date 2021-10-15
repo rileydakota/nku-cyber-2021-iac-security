@@ -67,7 +67,7 @@ module "session_manager" {
   name          = "example"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.demo_subnet_public.subnet_id
-  vpc_id        = aws_vpc.demo_vpc.vpc_id
+  vpc_id        = aws_vpc.demo_vpc.id
 }
 
 
