@@ -30,51 +30,13 @@ resource "aws_internet_gateway" "igw" {
   tags   = local.common_tags
 }
 
-resource "aws_security_group" "block_all_inbound" {
 
-  name        = "block_all_inbound"
-  description = "Blocks all inbound traffic while allowing outbound"
-  vpc_id      = aws_vpc.demo_vpc.id
-
-  egress = [{
-    description      = "allow all outbound"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    prefix_list_ids  = []
-    security_groups  = []
-    self             = false
-  }]
-
-
-  tags = local.common_tags
-}
 resource "aws_subnet" "demo_subnet_public" {
   vpc_id     = aws_vpc.demo_vpc.id
   cidr_block = "10.0.1.0/24"
   tags       = local.common_tags
 }
 
-
-resource "aws_instance" "bastion" {
-  ami                         = data.aws_ami.amazon-linux-2.id
-  instance_type               = "t3.micro"
-   #checkov:skip=CKV_AWS_88:This instance communicates with the public ssm endpoint
-  associate_public_ip_address = true
-  subnet_id                   = aws_subnet.demo_subnet_public.id
-  vpc_security_group_ids      = [aws_security_group.block_all_inbound.id]
-  iam_instance_profile        = aws_iam_instance_profile.ssm_managed_instance_prof.name
-  tags                        = local.common_tags
-  monitoring                  = true
-
-  metadata_options {
-    http_tokens                 = "required"
-    http_put_response_hop_limit = 1
-    http_endpoint               = "enabled"
-  }
-}
 
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.demo_vpc.id
@@ -100,41 +62,19 @@ resource "aws_route_table" "public_route_table" {
   tags = local.common_tags
 }
 
+module "session_manager" {
+  source        = "git::https://github.com/tmknom/terraform-aws-session-manager.git?ref=tags/2.0.0"
+  name          = "example"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.demo_subnet_public.id
+  vpc_id        = aws_vpc.demo_vpc.id
+}
+
+
 resource "aws_route_table_association" "public_route_table_assoc" {
   subnet_id      = aws_subnet.demo_subnet_public.id
   route_table_id = aws_route_table.public_route_table.id
 }
-resource "aws_iam_instance_profile" "ssm_managed_instance_prof" {
-  role = aws_iam_role.ssm_managed_role.name
-}
-
-resource "aws_iam_role" "ssm_managed_role" {
-  path                = "/"
-  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
-      },
-    ]
-  })
-}
-data "aws_ami" "amazon-linux-2" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
-  }
-}
-
 
 
 data "aws_secretsmanager_secret" "testing-secrets-in-state" {
